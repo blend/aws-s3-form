@@ -103,14 +103,14 @@ class AwsS3Form extends require( "mpbasic" )()
 		else if options.contentType
 			_cType = mime.lookup( filename )
 
-		_data =
+		_data = {
+                        serverSideEncryption: options.serverSideEncryption
+                        sseKmsKeyId: options.sseKmsKeyId
 			acl: @_acl( options.acl )
 			credential: @_createCredential( options.now )
 			amzdate: @_shortDate( options.now )
 			contentType: _cType
-                        serverSideEncryption: options.serverSideEncryption
-                        sseKmsKeyId: options.sseKmsKeyId
-
+                }
 		if options.redirectUrlTemplate?
 			_data.success_action_redirect = @_redirectUrl( options.redirectUrlTemplate, filename: filename )
 		else
