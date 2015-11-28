@@ -187,8 +187,8 @@ class AwsS3Form extends require( "mpbasic" )()
 				{ "x-amz-date": _predef.amzdate or @_shortDate( _date ) }
 				#[ "starts-with", "$Content-Type", contentType ]
 				#["content-length-range", 0, @settings.maxFileSize ]
-				{ "x-amz-server-side-encryption": _data.serverSideEncryption }
-				{ "x-amz-server-side-encryption-aws-kms-key-id": _data.sseKmsKeyId }
+				{ "x-amz-server-side-encryption": options.serverSideEncryption }
+				{ "x-amz-server-side-encryption-aws-kms-key-id": options.sseKmsKeyId }
 			]
 
 		if _predef.success_action_status?
