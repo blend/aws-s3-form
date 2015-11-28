@@ -104,8 +104,8 @@ class AwsS3Form extends require( "mpbasic" )()
 			_cType = mime.lookup( filename )
 
 		_data = {
-                        serverSideEncryption: options.serverSideEncryption
-                        sseKmsKeyId: options.sseKmsKeyId
+                        serverSideEncryption: @config.serverSideEncryption
+                        sseKmsKeyId: @config.sseKmsKeyId
 			acl: @_acl( options.acl )
 			credential: @_createCredential( options.now )
 			amzdate: @_shortDate( options.now )
@@ -187,8 +187,8 @@ class AwsS3Form extends require( "mpbasic" )()
 				{ "x-amz-date": _predef.amzdate or @_shortDate( _date ) }
 				#[ "starts-with", "$Content-Type", contentType ]
 				#["content-length-range", 0, @settings.maxFileSize ]
-				{ "x-amz-server-side-encryption": options.serverSideEncryption }
-				{ "x-amz-server-side-encryption-aws-kms-key-id": options.sseKmsKeyId }
+				{ "x-amz-server-side-encryption": @config.serverSideEncryption }
+				{ "x-amz-server-side-encryption-aws-kms-key-id": @config.sseKmsKeyId }
 			]
 
 		if _predef.success_action_status?
