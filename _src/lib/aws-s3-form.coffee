@@ -55,6 +55,7 @@ class AwsS3Form extends require( "mpbasic" )()
 			cryptoModule: "crypto"
 
 			serverSideEncryption: null
+
 			sseKmsKeyId: null
 
 	###
@@ -137,7 +138,7 @@ class AwsS3Form extends require( "mpbasic" )()
 				"X-Amz-Date": _data.amzdate
 				"Policy": _policyB64
 				"X-Amz-Signature": _signature.toString()
-				"x-amz-server-side-encryption": _data.serverSideEncryption,
+				"x-amz-server-side-encryption": _data.serverSideEncryption
 				"x-amz-server-side-encryption-aws-kms-key-id": _data.sseKmsKeyId
 
 		if options.redirectUrlTemplate?
